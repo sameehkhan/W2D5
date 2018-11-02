@@ -4,14 +4,20 @@ end
 
 class Array
   def hash
-  end
+    sum = 0
+    self.each_with_index do |parts, idx|
+      sum += parts.hash * idx  
+    end 
+    sum.hash 
+  end  
 end
 
 class String
   def hash
-    sum = 53124
-    chars.each {|ch| sum += sum ^ ch.ord}
-    my_hash(sum)
+    sum = 1
+    chars.each.with_index {|ch, i| sum *= ch.ord * i + 2}
+    # my_hash(sum*length)
+    sum.hash
   end
 end
 
@@ -19,14 +25,12 @@ class Hash
   # This returns 0 because rspec will break if it returns nil
   # Make sure to implement an actual Hash#hash method
   def hash
-    0
+    sum = 0
+    self.each do |k, v|
+      sum += k.hash 
+      sum += v.hash 
+    end 
+    sum.hash 
   end
 end
 
-def my_hash(n)
-  s = n * (0.5*(Math.sqrt(5) - 1))
-  x = s % 1
-  f = 8*x
-  f *= 10 until f % 1 == 0
-  f.floor
-end
