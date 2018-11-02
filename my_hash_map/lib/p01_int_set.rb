@@ -45,17 +45,18 @@ class IntSet
   end
 
   def remove(num)
-    @store[num % 20].delete(num)
+    self[num].delete(num)
   end
 
   def include?(num)
-    @store[num % 20].include?(num)
+    self[num].include?(num)
   end
 
   private
 
   def [](num)
     # optional but useful; return the bucket corresponding to `num`
+    @store[num % num_buckets]
   end
 
   def num_buckets
