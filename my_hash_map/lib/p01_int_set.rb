@@ -40,11 +40,12 @@ class IntSet
   def insert(num)
     # debugger
     idx = num % 20
-    # @store[idx] << num
+    @store[idx] << num
     
   end
 
   def remove(num)
+    @store[num % 20].delete(num)
   end
 
   def include?(num)
