@@ -9,8 +9,8 @@ end
 
 class String
   def hash
-    sum = 0
-    chars.each {|ch| sum += ch.ord}
+    sum = 53124
+    chars.each {|ch| sum += sum ^ ch.ord}
     my_hash(sum)
   end
 end
@@ -27,8 +27,6 @@ def my_hash(n)
   s = n * (0.5*(Math.sqrt(5) - 1))
   x = s % 1
   f = 8*x
-  until f % 1 == 0
-    f *= 10
-  end
+  f *= 10 until f % 1 == 0
   f.floor
 end
