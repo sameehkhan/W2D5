@@ -1,3 +1,4 @@
+require 'byebug'
 class Node
   attr_reader :key
   attr_accessor :val, :next, :prev
@@ -67,6 +68,13 @@ class LinkedList
   end
 
   def each
+    results = []
+      current = first 
+      until current.key == nil 
+        yield(current)
+        current = current.next
+      end  
+    results 
   end
 
   # uncomment when you have `each` working and `Enumerable` included
