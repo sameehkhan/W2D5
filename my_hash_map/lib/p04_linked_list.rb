@@ -50,6 +50,7 @@ class LinkedList
     each do |node|
       return node.val if node.key == key 
     end 
+    nil 
   end
 
   def include?(key)
@@ -68,9 +69,20 @@ class LinkedList
   end
 
   def update(key, val)
+    each do |node|
+      node.val = val if node.key == key 
+    end 
   end
 
   def remove(key)
+    if include?(key)
+      each do |node|
+        if node.key == key 
+          node.prev.next = node.next
+          node.next.prev = node.prev
+        end 
+      end 
+    end 
   end
 
   def each
