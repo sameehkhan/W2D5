@@ -47,7 +47,9 @@ class LinkedList
   end
 
   def get(key)
-    
+    each do |node|
+      return node.val if node.key == key 
+    end 
   end
 
   def include?(key)
