@@ -10,22 +10,21 @@ class HashMap
   end
 
   def include?(key)
-    @store.each do |bucketss|
-      return true if bucketss.include?(key)
-    end 
-    false 
+    @store[bucket(key)].include?(key)
   end
 
   def set(key, val)
-    i = key.hash 
-    linked = i % num_buckets
-    @store[linked].append(key,val)
+    @store[bucket(key)].append(key,val)
+    @count += 1
   end
 
   def get(key)
+    @store[bucket(key)].get(key)
   end
 
   def delete(key)
+    @store[bucket(key)].remove(key)
+    @count -= 1
   end
 
   def each
@@ -64,6 +63,6 @@ class HashMap
   # end 
 
   def bucket(key)
-    # optional but useful; return the bucket corresponding to `key`
+    key.hash % num_buckets
   end
 end
