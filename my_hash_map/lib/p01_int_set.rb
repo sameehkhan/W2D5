@@ -48,6 +48,7 @@ class IntSet
   end
 
   def include?(num)
+    @store[num % 20].include?(num)
   end
 
   private
