@@ -41,12 +41,14 @@ class LinkedList
   end
 
   def empty?
+    @head.next == @tail 
   end
 
   def get(key)
   end
 
   def include?(key)
+    
   end
 
   def append(key, val)
